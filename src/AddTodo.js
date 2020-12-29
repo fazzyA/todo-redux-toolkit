@@ -13,10 +13,10 @@ function AddTodo() {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        settask({
-            title: title,
-            id: uuidv4()
-        })
+        // settask({
+        //     title: title,
+        //     id: uuidv4()
+        // })
         dispatch(addtodo(title))
         console.log('sdsd')
 

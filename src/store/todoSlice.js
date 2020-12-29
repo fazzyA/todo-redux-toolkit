@@ -9,7 +9,7 @@ const todoSlice = createSlice({
         reducer(state, action){
             console.log(action.payload)
             let newObj = action.payload
-            let {id, title} = newObj
+            // let {id, title} = newObj
             let newState =  [...state, newObj]
             return newState
 
@@ -18,15 +18,25 @@ const todoSlice = createSlice({
             return { payload:{title:title, id:uuidv4()}}
         }
     },
-
-        deletetodo(state,action){
-            console.log(action.payload)
-            let newState1 = state.filter(
-                (item)=> item.id !== action.payload
-            )
+    deletetodo: {
+        reducer(state, action){
+            console.log(action.payload.id)
+            let newState1 = state.filter(item=>item.id!=action.payload.id)
             return newState1
 
+        },
+        prepare(id){
+            return {payload: {id}}
         }
+    }
+
+        // deletetodo(state,action){
+        //     console.log(action.payload)
+        //     let newState1 = state.filter(
+        //         (item)=> item.id !== action.payload
+        //     )
+        //     return newState1
+        // }
     }
 })
 export const { addtodo, deletetodo } = todoSlice.actions;
