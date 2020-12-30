@@ -6,13 +6,15 @@ import {deletetodo} from './store/todoSlice'
 function Viewtodo() {
     const [title, settitle] = useState('')
     const dispatch = useDispatch()
-    const state = useSelector(state => state)
-    console.log('.....',state)
+    const state = useSelector(state => state.todos )
+    const posts = useSelector(state => state.posts )
     const handleDelete = (id)=>{
          dispatch(deletetodo(id))
     }
     return (
-        <div>{title}
+        <>
+        <div className='todos'
+        >
             {
                 state.map((item)=>(
                     <div key={item.id}>
@@ -23,6 +25,14 @@ function Viewtodo() {
                 //sdadas
             }
         </div>
+        <div className='posts'>
+            {
+                posts.map((post)=>(
+                    <div key={post.id}>{post.title}</div>
+                ))
+            }
+        </div>
+        </>
     )
 }
 
